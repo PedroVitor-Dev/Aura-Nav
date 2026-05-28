@@ -32,10 +32,17 @@
     "48": "assets/icon.png",
     "128": "assets/icon.png"
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["particles/particles.js"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+ "web_accessible_resources": [
+  {
+    "resources": [
+      "particles/particles.js",
+      "sounds/sound-engine.js",
+      "sounds/rain.mp3",
+      "sounds/keyboard.mp3",
+      "sounds/wind.mp3",
+      "sounds/cafe.mp3"
+    ],
+    "matches": ["<all_urls>"]
+  }
+]
 }
