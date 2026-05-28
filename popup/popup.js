@@ -91,7 +91,7 @@ function getParticlesByMood(name) {
 function getSoundByMood(name) {
   const map = {
     chill: "rain", cyber: "keyboard", focus: "cafe",
-    dev: "keyboard", cozy: "cafe",
+    dev: "keyboard", cozy: "cafe", energetic: "relax_lofi", // atualizado
   };
   return map[name] ?? null;
 }

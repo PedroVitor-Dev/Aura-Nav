@@ -37,10 +37,12 @@
   {
     "resources": [
       "sounds/rain.mp3",
+      "sounds/relax_lofi.mp3",
       "sounds/keyboard.mp3",
       "sounds/wind.mp3",
       "sounds/cafe.mp3",
       "themes/aura-overlay.css"
+      
     ],
     "matches": ["<all_urls>"]
   }

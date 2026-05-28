@@ -6,13 +6,13 @@ const MOODS = {
     particles: "dust",
     sound: null,
   },
-  energetic: {
-    name: "energetic",
-    label: "Tarde Energética",
-    colors: ["#f7971e", "#ffd200"],
-    particles: "sparks",
-    sound: null,
-  },
+ energetic: {
+  name: "energetic",
+  label: "Tarde Energética",
+  colors: ["#f7971e", "#ffd200"],
+  particles: "sparks",
+  sound: "relax_lofi", // atualizado
+},
   chill: {
     name: "chill",
     label: "Noite Chill",
