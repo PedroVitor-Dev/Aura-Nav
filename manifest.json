@@ -31,5 +31,11 @@
     "16": "assets/icon.png",
     "48": "assets/icon.png",
     "128": "assets/icon.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["particles/particles.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
