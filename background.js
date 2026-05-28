@@ -1,23 +1,22 @@
 importScripts("mood-engine.js");
 
-// Inicializa o mood ao instalar
 chrome.runtime.onInstalled.addListener(() => {
   detectAndSaveMood("newtab");
 });
 
-// Escuta mudança de aba ativa
 chrome.tabs.onActivated.addListener(async ({ tabId }) => {
   try {
     const tab = await chrome.tabs.get(tabId);
     if (!tab.url) return;
     detectAndSaveMood(tab.url);
+    injectScripts(tabId, tab.url);
   } catch (e) {}
 });
 
-// Escuta navegação dentro da mesma aba
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === "complete" && tab.url) {
     detectAndSaveMood(tab.url);
+    injectScripts(tabId, tab.url);
   }
 });
 
@@ -25,15 +24,24 @@ function detectAndSaveMood(url) {
   try {
     const hostname = new URL(url).hostname;
     const mood = resolveMood(hostname);
-    chrome.storage.local.get(["autoMood", "manualMood"], (data) => {
-      // Só muda automaticamente se autoMood estiver ativo
+    chrome.storage.local.get(["autoMood"], (data) => {
       if (data.autoMood === false) return;
-      chrome.storage.local.set({
-        currentMood: mood,
-        manualMood: false,
-      });
+      chrome.storage.local.set({ currentMood: mood, manualMood: false });
     });
-  } catch (e) {
-    // URL inválida como chrome:// ou about://
-  }
+  } catch (e) {}
+}
+
+function injectScripts(tabId, url) {
+  // Ignora páginas do sistema
+  if (!url.startsWith("http")) return;
+
+  chrome.scripting.executeScript({
+    target: { tabId },
+    files: ["particles/particles.js"],
+  }).catch(() => {});
+
+  chrome.scripting.executeScript({
+    target: { tabId },
+    files: ["sounds/sound-engine.js"],
+  }).catch(() => {});
 }

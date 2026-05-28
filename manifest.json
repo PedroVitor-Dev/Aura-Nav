@@ -36,8 +36,6 @@
 "web_accessible_resources": [
   {
     "resources": [
-      "particles/particles.js",
-      "sounds/sound-engine.js",
       "sounds/rain.mp3",
       "sounds/keyboard.mp3",
       "sounds/wind.mp3",
