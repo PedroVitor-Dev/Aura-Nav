@@ -206,3 +206,35 @@ body {
   padding-top: 4px;
   border-top: 1px solid var(--border);
 }
+
+/* Animação do orb ao trocar de mood */
+@keyframes orbSwitch {
+  0%   { transform: scale(1);    filter: brightness(1); }
+  40%  { transform: scale(1.18); filter: brightness(1.4); }
+  100% { transform: scale(1);    filter: brightness(1); }
+}
+
+.mood-orb.switching {
+  animation: orbSwitch 0.6s ease forwards;
+}
+
+/* Fade nos botões do grid ao carregar */
+.mood-btn {
+  animation: fadeUp 0.3s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Delay escalonado por botão */
+.mood-btn:nth-child(1) { animation-delay: 0.03s; }
+.mood-btn:nth-child(2) { animation-delay: 0.06s; }
+.mood-btn:nth-child(3) { animation-delay: 0.09s; }
+.mood-btn:nth-child(4) { animation-delay: 0.12s; }
+.mood-btn:nth-child(5) { animation-delay: 0.15s; }
+.mood-btn:nth-child(6) { animation-delay: 0.18s; }
+.mood-btn:nth-child(7) { animation-delay: 0.21s; }
+.mood-btn:nth-child(8) { animation-delay: 0.24s; }
+

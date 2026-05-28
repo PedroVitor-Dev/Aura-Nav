@@ -13,12 +13,13 @@
     "service_worker": "background.js"
   },
   "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
-    }
-  ],
+  {
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "css": ["themes/aura-overlay.css"],
+    "run_at": "document_idle"
+  }
+],
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {
@@ -32,7 +33,7 @@
     "48": "assets/icon.png",
     "128": "assets/icon.png"
   },
- "web_accessible_resources": [
+"web_accessible_resources": [
   {
     "resources": [
       "particles/particles.js",
@@ -40,7 +41,8 @@
       "sounds/rain.mp3",
       "sounds/keyboard.mp3",
       "sounds/wind.mp3",
-      "sounds/cafe.mp3"
+      "sounds/cafe.mp3",
+      "themes/aura-overlay.css"
     ],
     "matches": ["<all_urls>"]
   }

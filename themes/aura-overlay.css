@@ -1,0 +1,54 @@
+/* Transição suave em tudo que muda com a aura */
+*, *::before, *::after {
+  transition:
+    background-color 1.2s ease,
+    border-color 1.2s ease,
+    box-shadow 1.2s ease;
+}
+
+/* Overlay de aura no topo da página */
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2147483646;
+  background: radial-gradient(
+    ellipse at top,
+    var(--aura-color-1, transparent) 0%,
+    transparent 60%
+  );
+  opacity: 0.06;
+  transition: background 1.5s ease, opacity 1.5s ease;
+}
+
+/* Barra sutil no topo */
+html::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  pointer-events: none;
+  z-index: 2147483647;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--aura-color-1, transparent),
+    var(--aura-color-2, transparent),
+    transparent
+  );
+  opacity: 0.8;
+  transition: background 1.5s ease;
+}
+
+/* Animação de entrada da aura */
+@keyframes auraFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 0.8; transform: translateY(0); }
+}
+
+html::after {
+  animation: auraFadeIn 1s ease forwards;
+}

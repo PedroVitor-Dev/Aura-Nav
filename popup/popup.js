@@ -23,8 +23,13 @@ function updateOrbDisplay(moodName) {
   document.documentElement.style.setProperty("--aura-2", meta.color2);
 
   moodOrb.style.background = `radial-gradient(circle, ${meta.color1}, ${meta.color2})`;
-  moodOrb.style.boxShadow = `0 0 20px ${meta.color1}`;
-  moodLabel.textContent = meta.label;
+  moodOrb.style.boxShadow  = `0 0 20px ${meta.color1}`;
+  moodLabel.textContent    = meta.label;
+
+  // Dispara animação de troca
+  moodOrb.classList.remove("switching");
+  void moodOrb.offsetWidth; // força reflow
+  moodOrb.classList.add("switching");
 
   document.querySelectorAll(".mood-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.mood === moodName);
