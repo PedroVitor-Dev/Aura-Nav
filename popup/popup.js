@@ -56,15 +56,44 @@ function renderGrid() {
 
 // Seleciona mood manualmente
 function selectMoodManually(moodName) {
-  chrome.storage.local.set({
-    currentMood: { name: moodName, colors: [MOOD_META[moodName].color1, MOOD_META[moodName].color2] },
-    manualMood: true,
-  });
-  moodSource.textContent = "Selecionado manualmente";
-  updateOrbDisplay(moodName);
+  const meta = MOOD_META[moodName];
+  if (!meta) return;
 
-  // Desliga o automático
+  const mood = {
+    name: moodName,
+    label: meta.label,
+    colors: [meta.color1, meta.color2],
+    particles: getParticlesByMood(moodName),
+    sound: getSoundByMood(moodName),
+  };
+
+  chrome.storage.local.set({
+    currentMood: mood,
+    manualMood: true,
+    autoMood: false,
+  });
+
+  moodSource.textContent = "Selecionado manualmente";
   document.getElementById("toggleAuto").checked = false;
+  updateOrbDisplay(moodName);
+}
+
+// Mapas auxiliares para o popup
+function getParticlesByMood(name) {
+  const map = {
+    morning: "dust", energetic: "sparks", chill: "stars",
+    cyber: "rain", focus: "none", dev: "rain",
+    neon: "sparks", cozy: "dust",
+  };
+  return map[name] ?? "none";
+}
+
+function getSoundByMood(name) {
+  const map = {
+    chill: "rain", cyber: "keyboard", focus: "cafe",
+    dev: "keyboard", cozy: "cafe",
+  };
+  return map[name] ?? null;
 }
 
 // Carrega estado inicial

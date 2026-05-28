@@ -1,15 +1,16 @@
 let particlesLoaded = false;
 let soundLoaded = false;
 
-// Carrega script dinamicamente
 function loadScript(url, callback) {
+  const existing = document.querySelector(`script[src="${url}"]`);
+  if (existing) { callback?.(); return; }
+
   const script = document.createElement("script");
   script.src = url;
   script.onload = callback;
   document.documentElement.appendChild(script);
 }
 
-// Carrega partículas
 function loadParticles(callback) {
   if (particlesLoaded) { callback?.(); return; }
   loadScript(chrome.runtime.getURL("particles/particles.js"), () => {
@@ -18,7 +19,6 @@ function loadParticles(callback) {
   });
 }
 
-// Carrega sound engine
 function loadSound(callback) {
   if (soundLoaded) { callback?.(); return; }
   loadScript(chrome.runtime.getURL("sounds/sound-engine.js"), () => {
@@ -27,15 +27,16 @@ function loadSound(callback) {
   });
 }
 
-// Aplica aura completa
 function applyAura(mood, particlesEnabled, soundEnabled) {
+  if (!mood) return;
+
   const root = document.documentElement;
   root.style.setProperty("--aura-color-1", mood.colors[0]);
   root.style.setProperty("--aura-color-2", mood.colors[1]);
   root.setAttribute("data-aura", mood.name);
 
   // Partículas
-  if (particlesEnabled && mood.particles !== "none") {
+  if (particlesEnabled && mood.particles && mood.particles !== "none") {
     loadParticles(() => {
       const tryStart = setInterval(() => {
         if (window.__auraParticles) {
@@ -67,15 +68,11 @@ function applyAura(mood, particlesEnabled, soundEnabled) {
 // Escuta mudanças no storage
 chrome.storage.onChanged.addListener(() => {
   chrome.storage.local.get(["currentMood", "particles", "sound"], (data) => {
-    if (data.currentMood) {
-      applyAura(data.currentMood, data.particles !== false, data.sound === true);
-    }
+    applyAura(data.currentMood, data.particles !== false, data.sound === true);
   });
 });
 
 // Aplica na carga inicial
 chrome.storage.local.get(["currentMood", "particles", "sound"], (data) => {
-  if (data.currentMood) {
-    applyAura(data.currentMood, data.particles !== false, data.sound === true);
-  }
+  applyAura(data.currentMood, data.particles !== false, data.sound === true);
 });
