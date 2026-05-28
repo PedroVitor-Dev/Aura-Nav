@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura Nav</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+
+      <header class="header">
+        <span class="logo">✦ Aura Nav</span>
+        <span class="version">v0.1.0</span>
+      </header>
+
+      <section class="mood-display">
+        <div class="mood-orb" id="moodOrb"></div>
+        <div class="mood-info">
+          <span class="mood-label" id="moodLabel">Detectando...</span>
+          <span class="mood-source" id="moodSource">—</span>
+        </div>
+      </section>
+
+      <section class="mood-grid">
+        <p class="section-title">Escolher manualmente</p>
+        <div class="grid" id="moodGrid">
+          <!-- gerado pelo popup.js -->
+        </div>
+      </section>
+
+      <section class="controls">
+        <p class="section-title">Efeitos</p>
+        <div class="toggles">
+          <label class="toggle">
+            <input type="checkbox" id="toggleParticles" checked />
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+            <span class="toggle-label">Partículas</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="toggleSound" />
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+            <span class="toggle-label">Sons ambiente</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="toggleAuto" checked />
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+            <span class="toggle-label">Modo automático</span>
+          </label>
+        </div>
+      </section>
+
+      <footer class="footer">
+        Zero rastreamento · Tudo local
+      </footer>
+
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
