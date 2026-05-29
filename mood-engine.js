@@ -1,17 +1,17 @@
 const MOODS = {
-  morning: {
-    name: "morning",
-    label: "Manhã Limpa",
-    colors: ["#fceabb", "#f8b500"],
-    particles: "dust",
-    sound: null,
-  },
+ morning: {
+  name: "morning",
+  label: "Manhã Limpa",
+  colors: ["#fceabb", "#f8b500"],
+  particles: "dust",
+  sound: "wind",
+},
  energetic: {
   name: "energetic",
   label: "Tarde Energética",
   colors: ["#f7971e", "#ffd200"],
   particles: "sparks",
-  sound: "relax_lofi", // atualizado
+  sound: "relax_lofi",
 },
   chill: {
     name: "chill",
@@ -41,13 +41,13 @@ const MOODS = {
     particles: "rain",
     sound: "keyboard",
   },
-  neon: {
-    name: "neon",
-    label: "Neon Vibes",
-    colors: ["#ff00ff", "#1a001a"],
-    particles: "sparks",
-    sound: null,
-  },
+ neon: {
+  name: "neon",
+  label: "Neon Vibes",
+  colors: ["#ff00ff", "#1a001a"],
+  particles: "sparks",
+  sound: "rain",
+},
   cozy: {
     name: "cozy",
     label: "Cozy Mode",
